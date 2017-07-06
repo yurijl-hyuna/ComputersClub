@@ -1,0 +1,33 @@
+.form-control {
+    display: inline-block;
+    width: inherit;
+    width: 100px;
+}
+#app {
+    margin: 3rem auto;
+}
+.hiden {
+    display: none;
+}
+@media screen and (min-width: 48rem){
+	.flex {display: flex;}
+}
+.computers_list ul {
+    max-width: 650px;
+}
+.computers_list ul li {
+    margin: 0.3125rem 0;
+    display: inline-block;
+}
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+#firstMenu {
+	text-align: center;
+	margin: 1rem auto;
+}
+.what_to_print h4 {
+	border-top: 1px solid;
+	padding-top: 1rem;
+}

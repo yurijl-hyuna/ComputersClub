@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>site</title>
+
+    <script src="https://unpkg.com/vue"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+    
+</head>
+<body>
+<section class="container" id="app">
+    <div class="row flex">
+        <div class="computers_list">
+            <ul>
+                <li v-for="comp in comps">
+                    Computer {{ comp.id >= 9 ? comp.id + 1 : ("0" + (comp.id + 1)) }}
+
+                    <input type="number" v-model.number="comp.timeBuy" class="form-control"> hours
+
+                    <button :id="'compButt' + comp.id" class="btn btn-success" @click="onStart(comp.timeBuy, comp.id)">Start</button>
+
+                    <button @click="onStop(comp.timeBuy, comp.id)" disabled="disabled" class="btn btn-danger">Stop</button>
+
+                    <span :id="'compSet' + comp.id"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="what_to_print">
+            <ul>
+                <li v-for="compText in comps">
+                    Computer {{ compText.id >= 9 ? compText.id + 1 : "0" + (compText.id + 1) }} : 
+                    <span>{{ (compText.timeSell)/3600 > 0 ? (Math.round((compText.timeSell)/3600 * 100) / 100) + " hours" : ""  }}</span>
+                    
+                    <span>{{ Math.floor( ((compText.timeSell)/60)%60 ) > 0 ? Math.floor( ((compText.timeSell)/60)%60 ) + " mins" : "" }}</span>
+                    
+                    <span>{{  Math.floor((compText.timeSell)%60) }}</span>
+                    seconds = 
+                    <span>{{ compText.money }}$</span>
+                </li>
+            </ul>
+            <div class="hiden">
+                <p class="center">
+                    time Price: 
+                    <input type="number" v-model.number="timePrice" class="form-control"> 
+                    $ for hour
+                </p>
+                
+                <h4>Money for today = {{ All_money }} $</h4>
+                <button class="btn btn-primary" class="print_hiden" onclick="window.print()">Print report</button>
+            </div>
+        </div>
+        
+        <div id="firstMenu">
+            <p>Haw meny computers du you have?</p>
+            <input type="nomber" class="form-control" v-model.number="compNomb">
+            <button class="btn btn-default" @click="hawManyComputers(compNomb)">Start</button>
+        </div>
+    </div>
+</section>
+
+<script src="app.js"></script>
+
+</body>
+</html>
